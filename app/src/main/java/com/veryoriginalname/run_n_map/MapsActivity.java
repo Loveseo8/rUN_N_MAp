@@ -23,8 +23,7 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    String code = getIntent().getExtras().getString("code");
-    String latitude = getIntent().getExtras().getString("latitude"), longitude = getIntent().getExtras().getString("longitude");
+    String longitude = getIntent().getExtras().get("latitude").toString(), latitude = getIntent().getExtras().get("longitude").toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +38,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
         mMap.addMarker(new MarkerOptions().position(sydney).title("Runner`s location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));

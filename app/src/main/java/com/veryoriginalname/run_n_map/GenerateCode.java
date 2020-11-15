@@ -69,7 +69,7 @@ public class GenerateCode extends AppCompatActivity {
                 generated_code = Integer.toHexString(f);
 
                 code.setText(generated_code);
-                databaseLocation = FirebaseDatabase.getInstance().getReference("location").child(generated_code);
+                databaseLocation = FirebaseDatabase.getInstance().getReference("Locations").child(generated_code);
 
                 databaseLocation.setValue(latitude + ", " + longitude);
             }
@@ -79,7 +79,7 @@ public class GenerateCode extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                DatabaseReference ds = FirebaseDatabase.getInstance().getReference("location").child(generated_code);
+                DatabaseReference ds = FirebaseDatabase.getInstance().getReference("Locations").child(generated_code);
                 ds.removeValue();
 
             }
