@@ -1,6 +1,8 @@
 package com.veryoriginalname.run_n_map;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,31 +25,50 @@ public class SeekerCodeInput extends AppCompatActivity {
     DatabaseReference databaseLocation;
     String s, latitude, longitude;
     String [] location;
+    SharedPreferences sPref;
+    String ID = "Alice";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seeker_input);
-
+        sPref = getSharedPreferences(ID, Context.MODE_PRIVATE);
         code = (EditText) findViewById(R.id.code1);
         start = (Button) findViewById(R.id.start);
-
-        databaseLocation = FirebaseDatabase.getInstance().getReference("Locations");
-        databaseLocation.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                databaseLocation = FirebaseDatabase.getInstance().getReference("Locations");
+                System.out.println(databaseLocation.toString());
+                databaseLocation.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String gen = code.getText().toString().trim();
+                        for(DataSnapshot child:snapshot.getChildren())
+                        {
+                            if(child.getKey().equals(gen))
+                            {
+                                String str = child.getValue().toString();
+                                SharedPreferences.Editor ed = sPref.edit();
+                                ed.putString(ID, str);
+                                ed.commit();
+                                Intent i = new Intent(SeekerCodeInput.this, MapsActivity.class);
+                                startActivity(i);
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+            }
         });
     }
 }

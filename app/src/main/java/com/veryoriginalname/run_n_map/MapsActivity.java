@@ -3,6 +3,9 @@ package com.veryoriginalname.run_n_map;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -22,13 +25,22 @@ import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    SharedPreferences sPref;
+    String ID = "Alice";
     private GoogleMap mMap;
-    String longitude = getIntent().getExtras().get("latitude").toString(), latitude = getIntent().getExtras().get("longitude").toString();
+    String str;
+//    String longitude = getIntent().getExtras().get("latitude").toString(), latitude = getIntent().getExtras().get("longitude").toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        sPref = getSharedPreferences(ID, Context.MODE_PRIVATE);
+        if (sPref.contains(ID)) {
+            str = sPref.getString(ID, "");
+            Log.d("TAGA", str);
+        }
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -38,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng sydney = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
+        LatLng sydney = new LatLng(55, 56);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Runner`s location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
