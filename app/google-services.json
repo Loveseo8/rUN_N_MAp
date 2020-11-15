@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "683520210791",
+    "firebase_url": "https://run-n-seek.firebaseio.com",
+    "project_id": "run-n-seek",
+    "storage_bucket": "run-n-seek.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683520210791:android:59c400be720395813ce1c2",
+        "android_client_info": {
+          "package_name": "com.veryoriginalname.run_n_map"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683520210791-2hn3cv6r4qp1ta7mrm0rec3qnhl82g2h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.veryoriginalname.run_n_map",
+            "certificate_hash": "bec91b56b8a6afd45b21a57fd8e3ffedc28d587f"
+          }
+        },
+        {
+          "client_id": "683520210791-1fkjoe39peo5kuh9gn6ib5bri83pqkqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIcox-nBoSGZiQCGOcr7FdkdsT6nMfpC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683520210791-1fkjoe39peo5kuh9gn6ib5bri83pqkqa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
