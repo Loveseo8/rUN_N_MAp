@@ -36,7 +36,7 @@ public class SeekerCodeInput extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                databaseLocation = FirebaseDatabase.getInstance().getReference("Locations");
+                databaseLocation = FirebaseDatabase.getInstance().getReference("location");
                 databaseLocation.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
