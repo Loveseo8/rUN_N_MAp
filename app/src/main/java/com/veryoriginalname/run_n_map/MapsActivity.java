@@ -29,7 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String ID = "Alice";
     private GoogleMap mMap;
     String str;
-//    String longitude = getIntent().getExtras().get("latitude").toString(), latitude = getIntent().getExtras().get("longitude").toString();
+String longitude, latitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (sPref.contains(ID)) {
             str = sPref.getString(ID, "");
             Log.d("TAGA", str);
+            latitude = str.split(", ")[0];
+            longitude = str.split(", ")[1];
+
         }
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -50,7 +53,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng sydney = new LatLng(55, 56);
+        LatLng sydney = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
         mMap.addMarker(new MarkerOptions().position(sydney).title("Runner`s location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
